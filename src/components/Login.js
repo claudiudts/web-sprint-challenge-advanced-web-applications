@@ -1,36 +1,72 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { axiosWithAuth } from '../helpers/axiosWithAuth';
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
 
-  useEffect(()=>{
-    axios
-      .delete(`http://localhost:5000/api/colors/1`, {
-        headers:{
-          'authorization': "ahuBHejkJJiMDhmODZhZi0zaeLTQ4ZfeaseOGZgesai1jZWYgrTA07i73Gebhu98"
-        }
-      })
-      .then(res=>{
-        axios.get(`http://localhost:5000/api/colors`, {
-          headers:{
-            'authorization': ""
-          }
+  
+  const credentialValues = {
+    username: '',
+    password: ''
+  };
+
+  const [credentials, setCredentials] =  useState(credentialValues);
+
+  const handleChange = e => {
+    setCredentials({...credentials, [e.target.name]: e.target.value})
+  }
+
+
+  const login = (e) => {
+    e.preventDefault();
+    if(!e.target.username || !e.target.password) {
+      alert("Username or Password not valid.");
+    } else {
+      axios
+        .post('http://localhost:5000/api/login', credentials)
+        .then((response) => {
+          localStorage.setItem('token', response.data.payload);
+          window.location.href = '/protected';
+          console.log(response, 'axios post')
         })
-        .then(res=> {
-          console.log(res);
-        });
-        console.log(res);
-      })
+        .catch((err) => {
+          console.log(err.message)
+        })
+    }
+  }
+
+  useEffect(()=>{
+    
   });
 
   return (
     <>
       <h1>
         Welcome to the Bubble App!
-        <p>Build a login page here</p>
       </h1>
+      <div>
+    <form onSubmit={login}>
+      <input
+        type="text"
+        placeholder='enter your username'
+        name="username"
+        value={credentials.username}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        placeholder='enter your password'
+        name="password"
+        value={credentials.password}
+        onChange={handleChange}
+      />
+      <button>Log in</button>
+     
+    </form>
+  </div>
     </>
   );
 };
