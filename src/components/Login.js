@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { axiosWithAuth } from '../helpers/axiosWithAuth';
-import { useHistory } from "react-router-dom";
 
 const Login = () => {
   // make a post request to retrieve a token from the api
@@ -30,7 +28,6 @@ const Login = () => {
         .then((response) => {
           localStorage.setItem('token', response.data.payload);
           window.location.href = '/protected';
-          console.log(response, 'axios post')
         })
         .catch((err) => {
           console.log(err.message)

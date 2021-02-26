@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import EditMenu from './EditMenu';
-import axios from "axios";
 import { axiosWithAuth } from "../helpers/axiosWithAuth";
 
 const initialColor = {
@@ -39,6 +38,12 @@ const ColorList = ({ colors, updateColors, getColors }) => {
     })
     .catch((err) => console.log(err.message))
   };
+
+  const addColor = color => {
+    e.preventDefault()
+    axiosWithAuth()
+    .post()
+  }
 
   return (
     <div className="colors-wrap">
