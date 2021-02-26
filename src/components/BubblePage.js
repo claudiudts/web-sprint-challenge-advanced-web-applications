@@ -15,7 +15,7 @@ const BubblePage = () => {
         console.table(res.data, "the colors we currently have");
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.message);
       });
 
   useEffect(() => {

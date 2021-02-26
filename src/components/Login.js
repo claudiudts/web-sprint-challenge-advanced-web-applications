@@ -20,7 +20,7 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    if(!e.target.username || !e.target.password) {
+    if( !e.target.username || !e.target.password) {
       alert("Username or Password not valid.");
     } else {
       axios
