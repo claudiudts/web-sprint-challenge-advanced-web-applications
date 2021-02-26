@@ -39,11 +39,11 @@ const ColorList = ({ colors, updateColors, getColors }) => {
     .catch((err) => console.log(err.message))
   };
 
-  const addColor = color => {
-    e.preventDefault()
-    axiosWithAuth()
-    .post()
-  }
+  // const addColor = color => {
+  //   e.preventDefault()
+  //   axiosWithAuth()
+  //   .post()
+  // }
 
   return (
     <div className="colors-wrap">
@@ -57,7 +57,7 @@ const ColorList = ({ colors, updateColors, getColors }) => {
                     deleteColor(color)
                   }
                 }>
-                  x
+                  X
               </span>{" "}
               {color.color}
             </span>

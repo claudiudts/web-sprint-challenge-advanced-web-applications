@@ -48,6 +48,7 @@ const Login = () => {
     <form onSubmit={login}>
       <input
         type="text"
+        id='username'
         placeholder='enter your username'
         name="username"
         value={credentials.username}
@@ -55,6 +56,7 @@ const Login = () => {
       />
       <input
         type="password"
+        id='password'
         placeholder='enter your password'
         name="password"
         value={credentials.password}
